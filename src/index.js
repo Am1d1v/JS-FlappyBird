@@ -22,7 +22,7 @@ function preload(){
 // Scene Create
 function create(){
   // Add Image to the Scene
-  this.add.image(config.width * 0.5, config.height * 0.5, 'sky');
+  this.add.image(0, 0, 'sky').setOrigin(0, 0);
 }
 
 
