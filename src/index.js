@@ -3,7 +3,7 @@ import Phaser from "phaser";
 // Game Configuration
 const config = {
   type: Phaser.AUTO,
-  width: 900,
+  width: 800,
   height: 600,
   physics: {
     default: 'arcade'
@@ -11,18 +11,18 @@ const config = {
   scene: {
     preload,
     create,
-    update
   }
 };
 
 // Scene Preload. Loading assets
 function preload(){
-
+  this.load.image('sky', 'assets/sky.png');
 }
 
 // Scene Create
 function create(){
-
+  // Add Image to the Scene
+  this.add.image(config.width * 0.5, config.height * 0.5, 'sky');
 }
 
 
