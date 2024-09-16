@@ -11,10 +11,12 @@ const config = {
   scene: {
     preload,
     create,
+    update
   }
 };
 
 let bird;
+let totalDelta = null;
 
 // Scene Preload. Loading assets
 function preload(){
@@ -32,7 +34,13 @@ function create(){
 
   // Add Bird sprite
   bird = this.physics.add.sprite(config.width * 0.1, config.height * 0.5, 'bird').setOrigin(0);
-  bird.body.gravity.y = 200;
+  bird.body.gravity.y = 20;
+}
+
+// Scene update. Application rerendering
+function update(time, delta){
+  console.log(bird.body.velocity);
+  totalDelta += delta;
 }
 
 
