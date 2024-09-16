@@ -6,7 +6,12 @@ const config = {
   width: 800,
   height: 600,
   physics: {
-    default: 'arcade'
+    default: 'arcade',
+    arcade: {
+      gravity: {
+        y: 200
+      }
+    }
   },
   scene: {
     preload,
@@ -34,13 +39,20 @@ function create(){
 
   // Add Bird sprite
   bird = this.physics.add.sprite(config.width * 0.1, config.height * 0.5, 'bird').setOrigin(0);
-  bird.body.gravity.y = 20;
 }
 
 // Scene update. Application rerendering
 function update(time, delta){
-  console.log(bird.body.velocity);
+
   totalDelta += delta;
+
+  if(totalDelta >= 1000){
+    console.log(bird.body.velocity.y);
+
+    // Reset totalDelta value to 0 after 1 second
+    totalDelta = 0;
+  }
+
 }
 
 
