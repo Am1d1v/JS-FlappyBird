@@ -14,6 +14,8 @@ const config = {
   }
 };
 
+let bird;
+
 // Scene Preload. Loading assets
 function preload(){
   // Load sky background image
@@ -29,7 +31,8 @@ function create(){
   this.add.image(0, 0, 'sky').setOrigin(0, 0);
 
   // Add Bird sprite
-  this.add.sprite(config.width * 0.5, config.height * 0.5, 'bird').setOrigin(0);
+  bird = this.physics.add.sprite(config.width * 0.1, config.height * 0.5, 'bird').setOrigin(0);
+  bird.body.gravity.y = 200;
 }
 
 
