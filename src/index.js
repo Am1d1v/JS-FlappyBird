@@ -10,7 +10,8 @@ const config = {
     arcade: {
       gravity: {
         //y: 20,
-      }
+      },
+      debug: true
     }
   },
   scene: {
@@ -58,13 +59,14 @@ function update(time, delta){
 
   // If bird X position is same or larger than width of canvas change bird X axis movement direction
   // If bird X position is smaller or equal to zero change bird X axis movement direction
-  if(bird.body.x > config.width){
-    bird.body.velocity.x *= -1;
+  if(bird.x >= config.width - bird.width){
+    bird.body.velocity.x = -VELOCITY;
+  } else if(bird.x <= 0){
+    bird.body.velocity.x = VELOCITY;
   };
 
-  if(bird.body.x < 0){
-    bird.body.velocity.x *= -1;
-  };
+  
+  
 }
 
 
