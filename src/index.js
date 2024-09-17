@@ -9,7 +9,7 @@ const config = {
     default: 'arcade',
     arcade: {
       gravity: {
-        y: 200,
+        y: 300,
       },
       debug: true
     }
@@ -25,6 +25,7 @@ const VELOCITY = 200;
 
 let bird;
 let totalDelta = null;
+let flapVelocity = 300;
 
 // Scene Preload. Loading assets
 function preload(){
@@ -43,20 +44,24 @@ function create(){
   // Add Bird sprite
   bird = this.physics.add.sprite(config.width * 0.1, config.height * 0.5, 'bird').setOrigin(0);
 
+  // Flap the bird
   this.input.keyboard.on('keydown-SPACE', flap)
-
   this.input.on('pointerdown', flap);
 }
 
 // Scene update. Application rerendering
 function update(time, delta){
   
-  
+
+  // Restart the game if the bird cross Y axis top/bottom borders of the Scene
+  if(bird.y > config.height || bird.y < 0){
+    console.log(bird.body);
+  }
 }
 
 // Flap. Move up the bird
 function flap(){
-  bird.body.velocity.y = -VELOCITY;
+  bird.body.velocity.y = -flapVelocity;
 }
 
 
