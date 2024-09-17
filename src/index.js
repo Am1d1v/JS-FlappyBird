@@ -8,9 +8,6 @@ const config = {
   physics: {
     default: 'arcade',
     arcade: {
-      gravity: {
-        y: 300,
-      },
       debug: true
     }
   },
@@ -24,7 +21,8 @@ const config = {
 const VELOCITY = 200;  
 
 let bird;
-let pipe;
+let upperpipe;
+let lowerpipe;
 let flapVelocity = 300;
 const initialBirdPosition = {
   x: config.width * 0.1,
@@ -50,9 +48,11 @@ function create(){
 
   // Add Bird sprite
   bird = this.physics.add.sprite(initialBirdPosition.x, initialBirdPosition.y, 'bird').setOrigin(0);
-
+  bird.body.gravity.y = 300;
+  
   // Add Pipe sprite
-  pipe = this.physics.add.sprite(300, 100, 'pipe').setOrigin(0);
+  upperpipe = this.add.sprite(600, 800, 'pipe').setOrigin(0.8);
+  lowerpipe = this.add.sprite(600, 100, 'pipe').setOrigin(0.8);
 
   // Flap the bird
   this.input.keyboard.on('keydown-SPACE', flap)
