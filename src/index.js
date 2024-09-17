@@ -24,11 +24,12 @@ const config = {
 const VELOCITY = 200;  
 
 let bird;
+let pipe;
 let flapVelocity = 300;
 const initialBirdPosition = {
   x: config.width * 0.1,
   y: config.height * 0.5
-}
+};
 
 // Scene Preload. Loading assets
 function preload(){
@@ -37,6 +38,9 @@ function preload(){
 
   // Load Bird image
   this.load.image('bird', 'assets/bird.png');
+
+  // Load Pipe image
+  this.load.image('pipe', 'assets/pipe.png')
 }
 
 // Scene Create
@@ -47,9 +51,13 @@ function create(){
   // Add Bird sprite
   bird = this.physics.add.sprite(initialBirdPosition.x, initialBirdPosition.y, 'bird').setOrigin(0);
 
+  // Add Pipe sprite
+  pipe = this.physics.add.sprite(300, 100, 'pipe').setOrigin(0);
+
   // Flap the bird
   this.input.keyboard.on('keydown-SPACE', flap)
   this.input.on('pointerdown', flap);
+
 }
 
 // Scene update. Application rerendering
@@ -71,6 +79,7 @@ function flap(){
 function restartPlayerPosition(){
   bird.x = initialBirdPosition.x;
   bird.y = initialBirdPosition.y;
+  bird.body.velocity.y = 0;
 }
 
 
