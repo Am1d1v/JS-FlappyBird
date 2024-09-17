@@ -43,19 +43,20 @@ function create(){
   // Add Bird sprite
   bird = this.physics.add.sprite(config.width * 0.1, config.height * 0.5, 'bird').setOrigin(0);
 
-  this.input.keyboard.on('keydown-SPACE', () => {
-    console.log('W');
-  })
+  this.input.keyboard.on('keydown-SPACE', flap)
 
-  this.input.on('pointerdown', () => {
-    console.log('click');
-  });
+  this.input.on('pointerdown', flap);
 }
 
 // Scene update. Application rerendering
 function update(time, delta){
   
   
+}
+
+// Flap. Move up the bird
+function flap(){
+  bird.body.velocity.y = -VELOCITY;
 }
 
 
