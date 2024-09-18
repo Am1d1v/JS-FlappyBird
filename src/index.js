@@ -19,15 +19,17 @@ const config = {
 };
 
 const VELOCITY = 200;  
+const initialBirdPosition = {
+  x: config.width * 0.1,
+  y: config.height * 0.5
+};
+const pipeVerticalDistanceRange = [150, 250];
 
 let bird;
 let upperpipe;
 let lowerpipe;
 let flapVelocity = 300;
-const initialBirdPosition = {
-  x: config.width * 0.1,
-  y: config.height * 0.5
-};
+let pipeVerticalDistance = Phaser.Math.Between(pipeVerticalDistanceRange[0], pipeVerticalDistanceRange[1]);
 
 // Scene Preload. Loading assets
 function preload(){
@@ -51,8 +53,8 @@ function create(){
   bird.body.gravity.y = 300;
   
   // Add Pipes sprite
-  upperpipe = this.add.sprite(600, Math.floor(Math.random() * 600), 'pipe').setOrigin(0, 1);
-  lowerpipe = this.add.sprite(600, upperpipe.y + 100, 'pipe').setOrigin(0, 0);
+  upperpipe = this.add.sprite(600, pipeVerticalDistance, 'pipe').setOrigin(0, 1);
+  lowerpipe = this.add.sprite(600, upperpipe.y + pipeVerticalDistance, 'pipe').setOrigin(0, 0);
 
   // Flap the bird
   this.input.keyboard.on('keydown-SPACE', flap)
