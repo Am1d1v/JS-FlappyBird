@@ -50,9 +50,9 @@ function create(){
   bird = this.physics.add.sprite(initialBirdPosition.x, initialBirdPosition.y, 'bird').setOrigin(0);
   bird.body.gravity.y = 300;
   
-  // Add Pipe sprite
-  upperpipe = this.add.sprite(600, 800, 'pipe').setOrigin(0.8);
-  lowerpipe = this.add.sprite(600, 100, 'pipe').setOrigin(0.8);
+  // Add Pipes sprite
+  upperpipe = this.add.sprite(600, Math.floor(Math.random() * 600), 'pipe').setOrigin(0, 1);
+  lowerpipe = this.add.sprite(600, upperpipe.y + 100, 'pipe').setOrigin(0, 0);
 
   // Flap the bird
   this.input.keyboard.on('keydown-SPACE', flap)
