@@ -24,13 +24,14 @@ const initialBirdPosition = {
   y: config.height * 0.5
 };
 const pipeVerticalDistanceRange = [150, 250];
+const PIPES_TO_RENDER = 4;
 
 let bird;
 let upperpipe;
 let lowerpipe;
 let flapVelocity = 300;
-let pipeVerticalDistance = Phaser.Math.Between(...pipeVerticalDistanceRange);
-let pipeVerticalPosition = Phaser.Math.Between(0 + 20, config.height - 20 - pipeVerticalDistance);
+let pipeHorizontalDistance = 0;
+
 
 // Scene Preload. Loading assets
 function preload(){
@@ -53,9 +54,18 @@ function create(){
   bird = this.physics.add.sprite(initialBirdPosition.x, initialBirdPosition.y, 'bird').setOrigin(0);
   bird.body.gravity.y = 300;
   
-  // Add Pipes sprite
-  upperpipe = this.add.sprite(600, pipeVerticalPosition, 'pipe').setOrigin(0, 1);
-  lowerpipe = this.add.sprite(600, upperpipe.y + pipeVerticalDistance, 'pipe').setOrigin(0, 0);
+  // Pipes generation
+  for(let i = 0; i < PIPES_TO_RENDER; i++){
+
+    pipeHorizontalDistance += 300;
+    let pipeVerticalDistance = Phaser.Math.Between(...pipeVerticalDistanceRange);
+    let pipeVerticalPosition = Phaser.Math.Between(0 + 20, config.height - 20 - pipeVerticalDistance);
+
+    // Add Pipes sprite
+    upperpipe = this.add.sprite(pipeHorizontalDistance, pipeVerticalPosition, 'pipe').setOrigin(0, 1);
+    lowerpipe = this.add.sprite(pipeHorizontalDistance, upperpipe.y + pipeVerticalDistance, 'pipe').setOrigin(0, 0);
+  }
+  
 
   // Flap the bird
   this.input.keyboard.on('keydown-SPACE', flap)
