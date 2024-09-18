@@ -98,13 +98,15 @@ function placePipe(uPipe, lPipe){
     let pipeVerticalDistance = Phaser.Math.Between(...pipeVerticalDistanceRange);
     let pipeVerticalPosition = Phaser.Math.Between(0 + 20, config.height - 20 - pipeVerticalDistance);
 
-    // Add Pipes sprite
-    upperpipe = this.physics.add.sprite(pipeHorizontalDistance, pipeVerticalPosition, 'pipe').setOrigin(0, 1);
-    lowerpipe = this.physics.add.sprite(pipeHorizontalDistance, upperpipe.y + pipeVerticalDistance, 'pipe').setOrigin(0, 0);
+    uPipe.x = pipeHorizontalDistance;
+    uPipe.y = pipeVerticalPosition;
+
+    lPipe.x = uPipe.x;
+    lPipe.y = uPipe.y + pipeVerticalDistance;
 
     // Pipes X axis velocity
-    upperpipe.body.velocity.x = -100;
-    lowerpipe.body.velocity.x = -100;
+    uPipe.body.velocity.x = -100;
+    lPipe.body.velocity.x = -100;
 }
 
 
