@@ -24,7 +24,8 @@ const initialBirdPosition = {
   y: config.height * 0.5
 };
 const pipeVerticalDistanceRange = [150, 250];
-const PIPES_TO_RENDER = 4;
+const pipeHorizontalDistanceRange = [100, 450];
+const PIPES_TO_RENDER = 3;
 
 let bird;
 let upperpipe;
@@ -57,13 +58,17 @@ function create(){
   // Pipes generation
   for(let i = 0; i < PIPES_TO_RENDER; i++){
 
-    pipeHorizontalDistance += 300;
+    pipeHorizontalDistance += Phaser.Math.Between(...pipeHorizontalDistanceRange);
     let pipeVerticalDistance = Phaser.Math.Between(...pipeVerticalDistanceRange);
     let pipeVerticalPosition = Phaser.Math.Between(0 + 20, config.height - 20 - pipeVerticalDistance);
 
     // Add Pipes sprite
-    upperpipe = this.add.sprite(pipeHorizontalDistance, pipeVerticalPosition, 'pipe').setOrigin(0, 1);
-    lowerpipe = this.add.sprite(pipeHorizontalDistance, upperpipe.y + pipeVerticalDistance, 'pipe').setOrigin(0, 0);
+    upperpipe = this.physics.add.sprite(pipeHorizontalDistance, pipeVerticalPosition, 'pipe').setOrigin(0, 1);
+    lowerpipe = this.physics.add.sprite(pipeHorizontalDistance, upperpipe.y + pipeVerticalDistance, 'pipe').setOrigin(0, 0);
+
+    // Pipes X axis velocity
+    upperpipe.body.velocity.x = -100;
+    lowerpipe.body.velocity.x = -100;
   }
   
 
