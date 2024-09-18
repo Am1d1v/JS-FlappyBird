@@ -29,7 +29,8 @@ let bird;
 let upperpipe;
 let lowerpipe;
 let flapVelocity = 300;
-let pipeVerticalDistance = Phaser.Math.Between(pipeVerticalDistanceRange[0], pipeVerticalDistanceRange[1]);
+let pipeVerticalDistance = Phaser.Math.Between(...pipeVerticalDistanceRange);
+let pipeVerticalPosition = Phaser.Math.Between(0 + 20, config.height - 20 - pipeVerticalDistance);
 
 // Scene Preload. Loading assets
 function preload(){
@@ -53,7 +54,7 @@ function create(){
   bird.body.gravity.y = 300;
   
   // Add Pipes sprite
-  upperpipe = this.add.sprite(600, pipeVerticalDistance, 'pipe').setOrigin(0, 1);
+  upperpipe = this.add.sprite(600, pipeVerticalPosition, 'pipe').setOrigin(0, 1);
   lowerpipe = this.add.sprite(600, upperpipe.y + pipeVerticalDistance, 'pipe').setOrigin(0, 0);
 
   // Flap the bird
