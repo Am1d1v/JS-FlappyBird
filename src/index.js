@@ -114,11 +114,19 @@ function placePipe(uPipe, lPipe){
 
 // Pipes Recycling
 function recyclePipes(){
+  let pipesArray = [];
+
   pipes.getChildren().forEach((pipe) => {
+
     if(pipe.getBounds().right <= 0){
-      console.log('Collision');
+      pipesArray.push(pipe);
+      if(pipesArray.length === 2){
+        placePipe(...pipesArray);
+      }
     }
+
   });
+
 };
 
 function getMostRightPipe(){
