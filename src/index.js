@@ -66,6 +66,8 @@ function create(){
     placePipe(upperpipe, lowerpipe);
   };
   
+  // Pipes X axis velocity
+  pipes.setVelocityX(-200);
 
   // Flap the bird
   this.input.keyboard.on('keydown-SPACE', flap)
@@ -86,14 +88,14 @@ function update(time, delta){
 // Flap. Move up the bird
 function flap(){
   bird.body.velocity.y = -flapVelocity;
-}
+};
 
 // Restart player position
 function restartPlayerPosition(){
   bird.x = initialBirdPosition.x;
   bird.y = initialBirdPosition.y;
   bird.body.velocity.y = 0;
-}
+};
 
 // Pipes placing
 function placePipe(uPipe, lPipe){
@@ -106,11 +108,7 @@ function placePipe(uPipe, lPipe){
 
     lPipe.x = uPipe.x;
     lPipe.y = uPipe.y + pipeVerticalDistance;
-
-    // Pipes X axis velocity
-    uPipe.body.velocity.x = -100;
-    lPipe.body.velocity.x = -100;
-}
+};
 
 
 new Phaser.Game(config);
