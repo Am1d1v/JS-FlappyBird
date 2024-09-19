@@ -52,7 +52,7 @@ function create(){
 
   // Add Bird sprite
   bird = this.physics.add.sprite(initialBirdPosition.x, initialBirdPosition.y, 'bird').setOrigin(0);
-  bird.body.gravity.y = 300;
+  //bird.body.gravity.y = 300;
   
   pipes = this.physics.add.group();
 
@@ -78,11 +78,12 @@ function create(){
 // Scene update. Application rerendering
 function update(time, delta){
   
-
   // Restart the game if the bird cross Y axis top/bottom borders of the Scene
   if(bird.y > config.height || bird.y < 0){
     restartPlayerPosition();
   }
+
+  recyclePipes();
 }
 
 // Flap. Move up the bird
@@ -109,6 +110,15 @@ function placePipe(uPipe, lPipe){
 
     lPipe.x = uPipe.x;
     lPipe.y = uPipe.y + pipeVerticalDistance;
+};
+
+// Pipes Recycling
+function recyclePipes(){
+  pipes.getChildren().forEach((pipe) => {
+    if(pipe.getBounds().right <= 0){
+      console.log('Collision');
+    }
+  });
 };
 
 function getMostRightPipe(){
