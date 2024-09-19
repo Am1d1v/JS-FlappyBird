@@ -24,7 +24,7 @@ const initialBirdPosition = {
   y: config.height * 0.5
 };
 const pipeVerticalDistanceRange = [150, 250];
-const pipeHorizontalDistanceRange = [100, 450];
+const pipeHorizontalDistanceRange = [200, 450];
 const PIPES_TO_RENDER = 3;
 
 let bird;
@@ -99,16 +99,27 @@ function restartPlayerPosition(){
 
 // Pipes placing
 function placePipe(uPipe, lPipe){
-    pipeHorizontalDistance += Phaser.Math.Between(...pipeHorizontalDistanceRange);
+    const mostRightX = getMostRightPipe();
     let pipeVerticalDistance = Phaser.Math.Between(...pipeVerticalDistanceRange);
     let pipeVerticalPosition = Phaser.Math.Between(0 + 20, config.height - 20 - pipeVerticalDistance);
+    const pipeHorizontalDistance = Phaser.Math.Between(...pipeHorizontalDistanceRange); 
 
-    uPipe.x = pipeHorizontalDistance;
+    uPipe.x = mostRightX + pipeHorizontalDistance;
     uPipe.y = pipeVerticalPosition;
 
     lPipe.x = uPipe.x;
     lPipe.y = uPipe.y + pipeVerticalDistance;
 };
+
+function getMostRightPipe(){
+  let mostRightX = 0;
+
+  pipes.getChildren().forEach((pipe) => {
+    mostRightX = Math.max(pipe.x, mostRightX);
+  });
+
+  return mostRightX;
+}
 
 
 new Phaser.Game(config);
