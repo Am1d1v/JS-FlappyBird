@@ -28,6 +28,7 @@ const pipeHorizontalDistanceRange = [100, 450];
 const PIPES_TO_RENDER = 3;
 
 let bird;
+let pipes = null;
 let flapVelocity = 300;
 let pipeHorizontalDistance = 0;
 
@@ -53,12 +54,14 @@ function create(){
   bird = this.physics.add.sprite(initialBirdPosition.x, initialBirdPosition.y, 'bird').setOrigin(0);
   bird.body.gravity.y = 300;
   
+  pipes = this.physics.add.group();
+
   // Pipes generation
   for(let i = 0; i < PIPES_TO_RENDER; i++){
 
     // Add Pipes sprite
-    const upperpipe = this.physics.add.sprite(0, 0, 'pipe').setOrigin(0, 1);
-    const lowerpipe = this.physics.add.sprite(0, 0, 'pipe').setOrigin(0, 0);
+    const upperpipe = pipes.create(0, 0, 'pipe').setOrigin(0, 1);
+    const lowerpipe = pipes.create(0, 0, 'pipe').setOrigin(0, 0);
 
     placePipe(upperpipe, lowerpipe);
   };
