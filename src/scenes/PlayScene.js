@@ -31,33 +31,15 @@ class PlayScene extends Phaser.Scene{
 
     // Scene Create
     create(){
-        // Add Image to the Scene
-        this.add.image(0, 0, 'sky').setOrigin(0);
+        this.createBackground();
 
-        // Add Bird sprite
-        this.bird = this.physics.add.sprite(this.config.startPosition.x, this.config.startPosition.y, 'bird').setOrigin(0);
+        this.createBird();
 
-        // Bird's gravity
-        this.bird.body.gravity.y = 300;
+        this.createPipes();
 
-        this.pipes = this.physics.add.group();
+        this.handleInputs();
 
-        // Pipes generation
-        for(let i = 0; i < PIPES_TO_RENDER; i++){
-        
-          // Add Pipes sprite
-          const upperpipe = this.pipes.create(0, 0, 'pipe').setOrigin(0, 1);
-          const lowerpipe = this.pipes.create(0, 0, 'pipe').setOrigin(0, 0);
-        
-          this.placePipe(upperpipe, lowerpipe);
-        };
-
-        // Pipes X axis velocity
-        this.pipes.setVelocityX(-200);
     
-        // Flap the bird
-        this.input.keyboard.on('keydown-SPACE', this.flap, this)
-        this.input.on('pointerdown', this.flap, this);
     };
 
     // Scene update. Application rerendering
@@ -69,6 +51,44 @@ class PlayScene extends Phaser.Scene{
 
         this.recyclePipes();
     };
+
+    // Set Image origin to the scene
+    createBackground(){
+        this.add.image(0, 0, 'sky').setOrigin(0);
+    };
+
+    // Add Bird position
+    createBird(){
+        this.bird = this.physics.add.sprite(this.config.startPosition.x, this.config.startPosition.y, 'bird').setOrigin(0);
+
+        // Bird's gravity
+        this.bird.body.gravity.y = 300;
+    };
+
+    // Set pipe group
+    createPipes(){
+        this.pipes = this.physics.add.group();
+
+         // Pipes generation
+         for(let i = 0; i < PIPES_TO_RENDER; i++){
+        
+            // Add Pipes sprite
+            const upperpipe = this.pipes.create(0, 0, 'pipe').setOrigin(0, 1);
+            const lowerpipe = this.pipes.create(0, 0, 'pipe').setOrigin(0, 0);
+          
+            this.placePipe(upperpipe, lowerpipe);
+          };
+  
+        // Pipes X axis velocity
+        this.pipes.setVelocityX(-200);
+    };
+
+    // Flap the bird
+    handleInputs(){
+        this.input.keyboard.on('keydown-SPACE', this.flap, this);
+        this.input.on('pointerdown', this.flap, this);
+    }
+
 
     // Flap. Move up the bird
     flap(){
