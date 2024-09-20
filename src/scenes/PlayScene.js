@@ -13,9 +13,8 @@ class PlayScene extends Phaser.Scene{
         this.pipes = null;
         this.pipeVerticalDistanceRange = [150, 250];
         this.pipeHorizontalDistanceRange = [200, 450];
-
-
-let pipeHorizontalDistance = 0;
+        this.pipeHorizontalDistance = 0;
+        this.flapVelocity = 300;
     }
 
     // Scene Preload. Loading assets
@@ -57,15 +56,15 @@ let pipeHorizontalDistance = 0;
         this.pipes.setVelocityX(-200);
     
         // Flap the bird
-        this.input.keyboard.on('keydown-SPACE', this.flap)
-        this.input.on('pointerdown', this.flap);
+        this.input.keyboard.on('keydown-SPACE', this.flap, this)
+        this.input.on('pointerdown', this.flap, this);
     };
 
     // Scene update. Application rerendering
     update(){
         // Restart the game if the bird cross Y axis top/bottom borders of the Scene
-        if(this.bird.y > this.config.height || this,bird.y < 0){
-          restartPlayerPosition();
+        if(this.bird.y > this.config.height || this.bird.y < 0){
+          this.restartPlayerPosition();
         }
 
         this.recyclePipes();
@@ -73,22 +72,22 @@ let pipeHorizontalDistance = 0;
 
     // Flap. Move up the bird
     flap(){
-        this.bird.body.velocity.y = -flapVelocity;
+        this.bird.body.velocity.y = -this.flapVelocity;
     };
 
     // Restart player position
     restartPlayerPosition(){
-        this.bird.x = initialBirdPosition.x;
-        this.bird.y = initialBirdPosition.y;
+        this.bird.x = this.config.startPosition.x;
+        this.bird.y = this.config.startPosition.y;
         this.bird.body.velocity.y = 0;
     };
 
     // Pipes placing
     placePipe(uPipe, lPipe){
-        const mostRightX = getMostRightPipe();
-        let pipeVerticalDistance = Phaser.Math.Between(...pipeVerticalDistanceRange);
-        let pipeVerticalPosition = Phaser.Math.Between(0 + 20, config.height - 20 - pipeVerticalDistance);
-        const pipeHorizontalDistance = Phaser.Math.Between(...pipeHorizontalDistanceRange); 
+        const mostRightX = this.getMostRightPipe();
+        let pipeVerticalDistance = Phaser.Math.Between(...this.pipeVerticalDistanceRange);
+        let pipeVerticalPosition = Phaser.Math.Between(0 + 20, this.config.height - 20 - pipeVerticalDistance);
+        const pipeHorizontalDistance = Phaser.Math.Between(...this.pipeHorizontalDistanceRange); 
 
         uPipe.x = mostRightX + pipeHorizontalDistance;
         uPipe.y = pipeVerticalPosition;
@@ -106,7 +105,7 @@ let pipeHorizontalDistance = 0;
         if(pipe.getBounds().right <= 0){
           pipesArray.push(pipe);
           if(pipesArray.length === 2){
-            placePipe(...pipesArray);
+            this.placePipe(...pipesArray);
           }
         }
     
@@ -117,7 +116,7 @@ let pipeHorizontalDistance = 0;
     getMostRightPipe(){
         let mostRightX = 0;
       
-        pipes.getChildren().forEach((pipe) => {
+        this.pipes.getChildren().forEach((pipe) => {
           mostRightX = Math.max(pipe.x, mostRightX);
         });
       

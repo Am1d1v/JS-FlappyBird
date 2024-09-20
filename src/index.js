@@ -27,16 +27,6 @@ const config = {
   scene: [new PlayScene(SHARED_CONFIG)]
 };
 
-const VELOCITY = 200;  
-const initialBirdPosition = {
-  x: config.width * 0.1,
-  y: config.height * 0.5
-}
-
-let flapVelocity = 300;
-
-
-
 
 
 new Phaser.Game(config);
