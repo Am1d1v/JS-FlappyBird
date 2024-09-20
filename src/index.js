@@ -13,11 +13,7 @@ const config = {
       debug: true
     }
   },
-  scene: {
-    preload,
-    create,
-    update
-  }
+  scene: [PlayScene]
 };
 
 const VELOCITY = 200;  
