@@ -91,14 +91,13 @@ class PlayScene extends Phaser.Scene{
     checkGameStatus(){
         // Restart the game if the bird cross Y axis top/bottom borders of the Scene
         if(this.bird.y > this.config.height || this.bird.y < 0){
-            this.restartPlayerPosition();
+            this.gameOver();
           }
     };
 
     // Pipes collion
     createColliders(){
-        debugger;
-        this.physics.add.collider(this.bird, this.pipes);
+        this.physics.add.collider(this.bird, this.pipes, this.gameOver);
     }
 
     // Flap. Move up the bird
@@ -107,7 +106,7 @@ class PlayScene extends Phaser.Scene{
     };
 
     // Restart player position
-    restartPlayerPosition(){
+    gameOver(){
         this.bird.x = this.config.startPosition.x;
         this.bird.y = this.config.startPosition.y;
         this.bird.body.velocity.y = 0;
