@@ -1,4 +1,6 @@
 import Phaser from "phaser";
+import PlayScene from "./scenes/PlayScene";
+
 
 // Game Configuration
 const config = {
@@ -52,7 +54,8 @@ function create(){
 
   // Add Bird sprite
   bird = this.physics.add.sprite(initialBirdPosition.x, initialBirdPosition.y, 'bird').setOrigin(0);
-  //bird.body.gravity.y = 300;
+  // Bird's gravity
+  bird.body.gravity.y = 300;
   
   pipes = this.physics.add.group();
 
