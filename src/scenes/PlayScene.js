@@ -97,7 +97,7 @@ class PlayScene extends Phaser.Scene{
 
     checkGameStatus(){
         // Restart the game if the bird cross Y axis top/bottom borders of the Scene
-        if(this.bird.y > this.config.height || this.bird.y < 0){
+        if(this.bird.getBounds().bottom >= this.config.height || this.bird.getBounds().top <= 0){
             this.gameOver();
           }
     };
