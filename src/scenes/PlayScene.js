@@ -61,6 +61,9 @@ class PlayScene extends Phaser.Scene{
 
         // Bird's gravity
         this.bird.body.gravity.y = 300;
+
+        // Canvas borders.
+        this.bird.setCollideWorldBounds(true);
     };
 
     // Set pipe group
@@ -117,6 +120,9 @@ class PlayScene extends Phaser.Scene{
 
         // Freeze all objects
         this.physics.pause();
+
+        // Change bird's color
+        this.bird.setTint(0xe317c1);
     };
 
     // Pipes placing
