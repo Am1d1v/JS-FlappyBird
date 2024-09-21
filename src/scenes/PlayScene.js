@@ -89,9 +89,11 @@ class PlayScene extends Phaser.Scene{
         console.log(this.pipes);
     };
 
-    // Flap the bird
+    // Inputs
     handleInputs(){
+        // Make bird flap on Slace Bar
         this.input.keyboard.on('keydown-SPACE', this.flap, this);
+        // Make Bird flap on left mouse click
         this.input.on('pointerdown', this.flap, this);
     };
 
@@ -123,6 +125,15 @@ class PlayScene extends Phaser.Scene{
 
         // Change bird's color
         this.bird.setTint(0xe317c1);
+
+        // Restart the game after N delay
+        this.time.addEvent({
+            delay: 1500,
+            callback: () => {
+                this.scene.restart();
+            },
+            loop: false
+        });
     };
 
     // Pipes placing
