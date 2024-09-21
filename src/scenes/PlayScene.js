@@ -111,9 +111,12 @@ class PlayScene extends Phaser.Scene{
 
     // Restart player position
     gameOver(){
-        this.bird.x = this.config.startPosition.x;
-        this.bird.y = this.config.startPosition.y;
-        this.bird.body.velocity.y = 0;
+        // this.bird.x = this.config.startPosition.x;
+        // this.bird.y = this.config.startPosition.y;
+        // this.bird.body.velocity.y = 0;
+
+        // Freeze all objects
+        this.physics.pause();
     };
 
     // Pipes placing
