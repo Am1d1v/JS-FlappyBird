@@ -71,8 +71,12 @@ class PlayScene extends Phaser.Scene{
          for(let i = 0; i < PIPES_TO_RENDER; i++){
         
             // Add Pipes sprite
-            const upperpipe = this.pipes.create(0, 0, 'pipe').setOrigin(0, 1);
-            const lowerpipe = this.pipes.create(0, 0, 'pipe').setOrigin(0, 0);
+            const upperpipe = this.pipes.create(0, 0, 'pipe')
+                .setImmovable(1)
+                .setOrigin(0, 1);
+            const lowerpipe = this.pipes.create(0, 0, 'pipe')
+                .setImmovable(1)
+                .setOrigin(0, 0);
           
             this.placePipe(upperpipe, lowerpipe);
           };
@@ -97,7 +101,7 @@ class PlayScene extends Phaser.Scene{
 
     // Pipes collion
     createColliders(){
-        this.physics.add.collider(this.bird, this.pipes, this.gameOver);
+        this.physics.add.collider(this.bird, this.pipes, this.gameOver, null, this);
     }
 
     // Flap. Move up the bird
