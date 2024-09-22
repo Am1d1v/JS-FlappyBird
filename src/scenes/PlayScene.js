@@ -129,6 +129,16 @@ class PlayScene extends Phaser.Scene{
         this.scoreText.setText(`Score: ${this.score}`)
     };
 
+    setBestScore(){
+        const bestScoreText = localStorage.getItem('bestScore');
+        const bestScoreNumber = bestScoreText && parseInt(bestScoreText, 10);
+
+
+        if(!this.bestScore || this.score > bestScoreNumber){
+            localStorage.setItem('bestScore', this.score);
+        }
+    }
+
     // Restart player position
     gameOver(){
         // this.bird.x = this.config.startPosition.x;
@@ -138,12 +148,8 @@ class PlayScene extends Phaser.Scene{
         // Freeze all objects
         this.physics.pause();
 
-        const bestScoreText = localStorage.getItem('bestScore');
-        const bestScoreNumber = bestScoreText && parseInt(bestScoreText, 10);
-
-        if(!this.bestScore || this.score > this.bestScore){
-            localStorage.setItem('bestScore', this.score);
-        }
+        
+        this.setBestScore();
 
         // Change bird's color
         this.bird.setTint(0xe317c1);
