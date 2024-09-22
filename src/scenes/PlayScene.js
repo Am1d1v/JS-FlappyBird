@@ -111,13 +111,19 @@ class PlayScene extends Phaser.Scene{
     // Player's game score. Increases after successfully pipe walkthrough
     createScore(){
         this.score = 0;
-        // Score scene placement
-        this.scoreText = this.add.text(15, 15, `${this.score}`);
+        // Score setting
+        this.scoreText = this.add.text(15, 15, `Score: ${this.score}`, {fontSize: '30px', fill: 'black'});
     }
 
     // Flap. Move up the bird
     flap(){
         this.bird.body.velocity.y = -this.flapVelocity;
+    };
+
+    // Increase score
+    increaseScore(){
+        this.score += 1;
+        this.scoreText.setText(`Score: ${this.score}`)
     };
 
     // Restart player position
@@ -166,6 +172,9 @@ class PlayScene extends Phaser.Scene{
           pipesArray.push(pipe);
           if(pipesArray.length === 2){
             this.placePipe(...pipesArray);
+
+            // Increase player's score
+            this.increaseScore();
           }
         }
     
