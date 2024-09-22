@@ -15,6 +15,9 @@ class PlayScene extends Phaser.Scene{
         this.pipeHorizontalDistanceRange = [200, 450];
         this.pipeHorizontalDistance = 0;
         this.flapVelocity = 300;
+
+        this.score = 0;
+        this.scoreText = '';
     }
 
     // Scene Preload. Loading assets
@@ -32,15 +35,11 @@ class PlayScene extends Phaser.Scene{
     // Scene Create
     create(){
         this.createBackground();
-
         this.createBird();
-
         this.createPipes();
-
         this.createColliders();
-
+        this.createScore();
         this.handleInputs();
-
     };
 
     // Scene update. Application rerendering
@@ -60,7 +59,7 @@ class PlayScene extends Phaser.Scene{
         this.bird = this.physics.add.sprite(this.config.startPosition.x, this.config.startPosition.y, 'bird').setOrigin(0);
 
         // Bird's gravity
-        this.bird.body.gravity.y = 300;
+        this.bird.body.gravity.y = 600;
 
         // Canvas borders.
         this.bird.setCollideWorldBounds(true);
@@ -107,6 +106,13 @@ class PlayScene extends Phaser.Scene{
     // Pipes collion
     createColliders(){
         this.physics.add.collider(this.bird, this.pipes, this.gameOver, null, this);
+    }
+
+    // Player's game score. Increases after successfully pipe walkthrough
+    createScore(){
+        this.score = 0;
+        // Score scene placement
+        this.scoreText = this.add.text(15, 15, `${this.score}`);
     }
 
     // Flap. Move up the bird
