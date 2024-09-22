@@ -111,6 +111,8 @@ class PlayScene extends Phaser.Scene{
     // Player's game score. Increases after successfully pipe walkthrough
     createScore(){
         this.score = 0;
+        this.bestScore = 0;
+
         // Score setting
         this.scoreText = this.add.text(15, 15, `Score: ${this.score}`, {fontSize: '30px', fill: 'black'});
     }
@@ -134,6 +136,9 @@ class PlayScene extends Phaser.Scene{
 
         // Freeze all objects
         this.physics.pause();
+
+        const bestScoreText = localStorage.getItem('bestScore');
+        
 
         // Change bird's color
         this.bird.setTint(0xe317c1);
