@@ -111,10 +111,11 @@ class PlayScene extends Phaser.Scene{
     // Player's game score. Increases after successfully pipe walkthrough
     createScore(){
         this.score = 0;
-        this.bestScore = 0;
+        this.bestScore = localStorage.getItem('bestScore');
 
         // Score setting
         this.scoreText = this.add.text(15, 15, `Score: ${this.score}`, {fontSize: '30px', fill: 'black'});
+        this.add.text(15, 45, `Score: ${this.bestScore || 0}`, {fontSize: '18px', fill: 'black'});
     }
 
     // Flap. Move up the bird
@@ -138,7 +139,11 @@ class PlayScene extends Phaser.Scene{
         this.physics.pause();
 
         const bestScoreText = localStorage.getItem('bestScore');
-        
+        const bestScoreNumber = bestScoreText && parseInt(bestScoreText, 10);
+
+        if(!this.bestScore || this.score > this.bestScore){
+            localStorage.setItem('bestScore', this.score);
+        }
 
         // Change bird's color
         this.bird.setTint(0xe317c1);
