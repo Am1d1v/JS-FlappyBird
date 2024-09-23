@@ -124,9 +124,16 @@ class PlayScene extends Phaser.Scene{
 
     // Pause Button
     pauseButton(){
-        this.add.image(this.config.width - 20, this.config.height - 20, 'pause')
+        const pauseButton = this.add.image(this.config.width - 20, this.config.height - 20, 'pause')
             .setOrigin(1)
             .setScale(2);
+
+        pauseButton.setInteractive();
+
+        // Pause game on left click
+        pauseButton.on('pointerdown', () => {
+            alert('Paused');
+        });    
     }
 
     // Flap. Move up the bird
