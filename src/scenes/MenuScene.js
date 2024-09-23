@@ -2,7 +2,10 @@ import Phaser from "phaser";
 
 
 class MenuScene extends Phaser.Scene{
-
+    constructor(config){
+        super('MenuScene');
+        this.config = config;
+    };
 
     // Scene Preload. Loading assets
     preload(){
@@ -13,6 +16,11 @@ class MenuScene extends Phaser.Scene{
     // Scene Create
     create(){
         this.createBackground();
+        
+        // Launch Play Scene
+        setTimeout(() => {
+            this.scene.start('PlayScene')
+        }, 1500);
     };
 
     // Set Image origin to the scene
