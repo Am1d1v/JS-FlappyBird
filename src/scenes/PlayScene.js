@@ -42,7 +42,7 @@ class PlayScene extends Phaser.Scene{
         this.createPipes();
         this.createColliders();
         this.createScore();
-        this.pauseBotton();
+        this.pauseButton();
         this.handleInputs();
     };
 
@@ -122,9 +122,11 @@ class PlayScene extends Phaser.Scene{
         this.add.text(15, 45, `Score: ${this.bestScore || 0}`, {fontSize: '18px', fill: 'black'});
     }
 
-    // Pause Botton
-    pauseBotton(){
-        this.add.image(this.config.width - 20, this.config.height - 20, 'pause');
+    // Pause Button
+    pauseButton(){
+        this.add.image(this.config.width - 20, this.config.height - 20, 'pause')
+            .setOrigin(1)
+            .setScale(2);
     }
 
     // Flap. Move up the bird
