@@ -20,21 +20,6 @@ class PlayScene extends Phaser.Scene{
         this.scoreText = '';
     }
 
-    // Scene Preload. Loading assets
-    preload(){
-        // Load sky background image
-        this.load.image('sky', 'assets/sky.png');
-
-        // Load Bird image
-        this.load.image('bird', 'assets/bird.png');
-
-        // Load Pipe image
-        this.load.image('pipe', 'assets/pipe.png');
-
-        // Load Pause Image
-        this.load.image('pause', 'assets/pause.png');
-    };
-
     // Scene Create
     create(){
         this.createBackground();

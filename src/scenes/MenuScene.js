@@ -7,12 +7,6 @@ class MenuScene extends Phaser.Scene{
         this.config = config;
     };
 
-    // Scene Preload. Loading assets
-    preload(){
-        // Load sky background image
-        this.load.image('sky', 'assets/sky.png');
-    };
-
     // Scene Create
     create(){
         this.createBackground();
