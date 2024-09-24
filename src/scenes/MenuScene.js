@@ -1,15 +1,15 @@
 import Phaser from "phaser";
+import BaseScene from "./BaseScene";
 
 
-class MenuScene extends Phaser.Scene{
+class MenuScene extends BaseScene{
     constructor(config){
-        super('MenuScene');
-        this.config = config;
+        super('MenuScene', config);
     };
 
     // Scene Create
     create(){
-        this.createBackground();
+        super.create();
         
         // Launch Play Scene
         setTimeout(() => {
@@ -17,10 +17,6 @@ class MenuScene extends Phaser.Scene{
         }, 1500);
     };
 
-    // Set Image origin to the scene
-    createBackground(){
-        this.add.image(0, 0, 'sky').setOrigin(0);
-    };
 }
 
 export default MenuScene;

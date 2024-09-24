@@ -6,7 +6,7 @@ const PIPES_TO_RENDER = 3;
 
 class PlayScene extends BaseScene{
     constructor(config){
-        super('PlayScene');
+        super('PlayScene', config);
 
         this.config = config;
         this.bird = null;
@@ -22,7 +22,7 @@ class PlayScene extends BaseScene{
 
     // Scene Create
     create(){
-        this.createBackground();
+        super.create()
         this.createBird();
         this.createPipes();
         this.createColliders();
