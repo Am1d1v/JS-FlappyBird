@@ -5,6 +5,7 @@ class BaseScene extends Phaser.Scene{
     constructor(key, config){
         super(key);
         this.config = config;
+        this.screenCenter = [config.width * 0.5, config.height * 0.5];
     };
 
     // Scene Create
@@ -15,8 +16,16 @@ class BaseScene extends Phaser.Scene{
         
     };
 
+    // Menu
+    createMenu(menu){
+        menu.forEach(menuItem => {
+            const menuPosition = [...this.screenCenter];
+            this.add.text(...menuPosition, menuItem.text, {fontSize: '30px', fill: '#000'})
+        });
+    };
+
     
     
-}
+};
 
 export default BaseScene;

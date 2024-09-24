@@ -5,16 +5,20 @@ import BaseScene from "./BaseScene";
 class MenuScene extends BaseScene{
     constructor(config){
         super('MenuScene', config);
+
+        // Menu items
+        this.menu = [
+            {scene: 'PlayScene', text: 'Play'},
+            {scene: 'ScoreScene', text: 'Score'},
+            {scene: null, text: 'Exit'},
+        ];
     };
 
     // Scene Create
     create(){
         super.create();
-        
-        // Launch Play Scene
-        setTimeout(() => {
-            this.scene.start('PlayScene')
-        }, 1500);
+
+        this.createMenu(this.menu);
     };
 
 }
