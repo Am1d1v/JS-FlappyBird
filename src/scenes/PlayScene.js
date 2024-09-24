@@ -1,10 +1,10 @@
-import Phaser from "phaser";
+import BaseScene from "./BaseScene";
 
 
 const PIPES_TO_RENDER = 3;
 
 
-class PlayScene extends Phaser.Scene{
+class PlayScene extends BaseScene{
     constructor(config){
         super('PlayScene');
 

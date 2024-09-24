@@ -19,9 +19,10 @@ const SHARED_CONFIG = {
 
 // Array of scenes
 const SCENES = [PreloadScene, MenuScene, PlayScene];
+const createScene = Scene => new Scene(SHARED_CONFIG);
 
 // Scenes initialization
-const initScenes = () => SCENES.map(Scene => new Scene(SHARED_CONFIG));
+const initScenes = () => SCENES.map(createScene);
 
 // Game Configuration
 const config = {
