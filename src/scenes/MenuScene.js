@@ -37,7 +37,13 @@ class MenuScene extends BaseScene{
 
         // Select Menu option on click & release pointer
         textGameObject.on('pointerup', () => {
-            menuItem.scene === null ? alert('Exit') : console.log('Scene');
+            // Launch specific scene
+            menuItem.scene && this.scene.start(menuItem.scene);
+            
+            // Exit game. Clear canvas
+            if(menuItem.text === 'Exit'){
+                this.game.destroy(true);
+            }
         });
     };
 
