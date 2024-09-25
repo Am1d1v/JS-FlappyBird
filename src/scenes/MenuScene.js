@@ -34,6 +34,11 @@ class MenuScene extends BaseScene{
         textGameObject.on('pointerout', () => {
             textGameObject.setStyle({fill: '#000'});
         });
+
+        // Select Menu option on click & release pointer
+        textGameObject.on('pointerup', () => {
+            menuItem.scene === null ? alert('Exit') : console.log('Scene');
+        });
     };
 
 }
