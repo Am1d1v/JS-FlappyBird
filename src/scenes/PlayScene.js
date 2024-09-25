@@ -9,6 +9,7 @@ class PlayScene extends BaseScene{
         super('PlayScene', config);
 
         this.config = config;
+        this.config.canGoBack = true;
         this.bird = null;
         this.pipes = null;
         this.pipeVerticalDistanceRange = [150, 250];
@@ -29,7 +30,6 @@ class PlayScene extends BaseScene{
         this.createScore();
         this.pauseButton();
         this.handleInputs();
-        this.backButton();
     };
 
     // Scene update. Application rerendering
@@ -121,17 +121,6 @@ class PlayScene extends BaseScene{
         });    
     }
 
-    // Back Button
-    backButton(){
-        const backButton = this.add.image(this.config.width * 0.06, this.config.height * 0.98, 'back')
-            .setInteractive()
-            .setOrigin(1)
-            .setScale(2);
-
-        backButton.on('pointerdown', () => {
-            console.log('Back');
-        });    
-    }
 
     // Flap. Move up the bird
     flap(){

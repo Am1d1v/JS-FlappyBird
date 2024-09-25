@@ -17,6 +17,20 @@ class BaseScene extends Phaser.Scene{
         // Set Image origin to the scene
         this.add.image(0, 0, 'sky').setOrigin(0);
         
+        if(this.config.canGoBack){
+            // Back Button
+            const backButton = this.add.image(this.config.width * 0.06, this.config.height * 0.98, 'back')
+            .setInteractive()
+            .setOrigin(1)
+            .setScale(2);
+
+            // Return to Main Menu
+            backButton.on('pointerdown', () => {
+                this.scene.start('MenuScene');
+            });    
+    
+        };
+
     };
 
     // Menu
