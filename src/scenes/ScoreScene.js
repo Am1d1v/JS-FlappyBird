@@ -11,7 +11,7 @@ class ScoreScene extends BaseScene{
 
         const bestScoreText = localStorage.getItem('bestScore');
 
-        this.add.text(...this.screenCenter, `Score: ${bestScoreText || 0}`, {...this.fontOptions});
+        this.add.text(...this.screenCenter, `Score: ${bestScoreText || 0}`, {...this.fontOptions}).setOrigin(0.5);
     }
 }
 

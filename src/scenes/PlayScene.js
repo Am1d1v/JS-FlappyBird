@@ -29,6 +29,7 @@ class PlayScene extends BaseScene{
         this.createScore();
         this.pauseButton();
         this.handleInputs();
+        this.backButton();
     };
 
     // Scene update. Application rerendering
@@ -74,7 +75,6 @@ class PlayScene extends BaseScene{
   
         // Pipes X axis velocity
         this.pipes.setVelocityX(-200);
-        console.log(this.pipes);
     };
 
     // Inputs
@@ -118,6 +118,18 @@ class PlayScene extends BaseScene{
         pauseButton.on('pointerdown', () => {
             this.physics.pause();
             this.scene.pause();
+        });    
+    }
+
+    // Back Button
+    backButton(){
+        const backButton = this.add.image(this.config.width * 0.06, this.config.height * 0.98, 'back')
+            .setInteractive()
+            .setOrigin(1)
+            .setScale(2);
+
+        backButton.on('pointerdown', () => {
+            console.log('Back');
         });    
     }
 

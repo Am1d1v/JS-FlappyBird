@@ -18,6 +18,9 @@ class PreloadScene extends Phaser.Scene{
 
         // Load Pause Image
         this.load.image('pause', 'assets/pause.png');
+
+        // Load Back Button Image
+        this.load.image('back', 'assets/back.png');
     };
 
     // Scene Create
