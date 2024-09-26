@@ -30,6 +30,7 @@ class PlayScene extends BaseScene{
         this.createScore();
         this.pauseButton();
         this.handleInputs();
+        this.listerToEvents();
     };
 
     // Scene update. Application rerendering
@@ -38,6 +39,13 @@ class PlayScene extends BaseScene{
 
         this.recyclePipes();
     };
+
+    listerToEvents(){
+        this.events.on('resume', () => {
+            this.initialTime = 3;
+            this.countDownText = this.add.text(...this.screenCenter, 'Fly in ' + this.initialTime, this.fontOptions).setOrigin(0.5);
+        });
+    }
 
     // Set Image origin to the scene
     createBackground(){
