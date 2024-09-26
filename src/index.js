@@ -20,7 +20,7 @@ const SHARED_CONFIG = {
 };
 
 // Array of scenes
-const SCENES = [PreloadScene, MenuScene, ScoreScene, PauseScene, PlayScene];
+const SCENES = [PreloadScene, MenuScene, ScoreScene, PlayScene, PauseScene];
 const createScene = Scene => new Scene(SHARED_CONFIG);
 
 // Scenes initialization

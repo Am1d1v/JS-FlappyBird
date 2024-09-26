@@ -15,7 +15,7 @@ class PauseScene extends BaseScene{
     create(){
         super.create();
         this.createMenu(this.menu, this.setupMenuEvents.bind(this));
-    }
+    };
 
     setupMenuEvents(menuItem){
         const textGameObject = menuItem.textGameObject;
@@ -33,7 +33,7 @@ class PauseScene extends BaseScene{
 
         // Select Menu option on click & release pointer
         textGameObject.on('pointerup', () => {
-            console.log('Pause');
+            console.log('Clicked');
         });
     };
 
