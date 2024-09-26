@@ -3,6 +3,7 @@ import PlayScene from "./scenes/PlayScene";
 import MenuScene from "./scenes/MenuScene";
 import PreloadScene from "./scenes/PreloadScene";
 import ScoreScene from "./scenes/ScoreScene";
+import PauseScene from "./scenes/PauseScene";
 
 
 const WIDTH = 800;
@@ -19,7 +20,7 @@ const SHARED_CONFIG = {
 };
 
 // Array of scenes
-const SCENES = [PreloadScene, MenuScene, ScoreScene, PlayScene];
+const SCENES = [PreloadScene, MenuScene, ScoreScene, PauseScene, PlayScene];
 const createScene = Scene => new Scene(SHARED_CONFIG);
 
 // Scenes initialization
