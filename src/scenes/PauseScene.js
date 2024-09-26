@@ -33,7 +33,15 @@ class PauseScene extends BaseScene{
 
         // Select Menu option on click & release pointer
         textGameObject.on('pointerup', () => {
-            console.log('Clicked');
+            if(menuItem.scene && menuItem.text === 'Continue'){
+                // Resume the game
+                this.scene.stop();
+                this.scene.resume(menuItem.scene);
+            } else {
+                // Exit to Main Menu
+                this.scene.stop('PlayScene');
+                this.scene.start(menuItem.scene)
+            }
         });
     };
 
