@@ -20,6 +20,22 @@ class PlayScene extends BaseScene{
 
         this.score = 0;
         this.scoreText = '';
+
+        this.currentDifficulty = 'easy';
+        this.diffulties = {
+            easy: {
+                pipeHorizontalDistanceRange: [300, 350],
+                pipeVerticalDistanceRange: [150, 200]
+            },
+            medium: {
+                pipeHorizontalDistanceRange: [250, 330],
+                pipeVerticalDistanceRange: [130, 180]
+            },
+            hard: {
+                pipeHorizontalDistanceRange: [180, 240],
+                pipeVerticalDistanceRange: [100, 150]
+            }
+        }
     }
 
     // Scene Create
