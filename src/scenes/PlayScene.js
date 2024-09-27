@@ -41,10 +41,31 @@ class PlayScene extends BaseScene{
     };
 
     listerToEvents(){
+
+        // Resume game after pause
         this.events.on('resume', () => {
+            // Coundown time
             this.initialTime = 3;
-            this.countDownText = this.add.text(...this.screenCenter, 'Fly in ' + this.initialTime, this.fontOptions).setOrigin(0.5);
+            this.countDownText = this.add.text(...this.screenCenter, 'Fly in: ' + this.initialTime, this.fontOptions);
+            this.timeEvent = this.time.addEvent({
+                delay: 1000,
+                callback: this.countDown,
+                callbackScope: this,
+                loop: true
+            });
         });
+    }
+
+    countDown(){
+        this.initialTime--;
+        this.countDownText.setText('Fly in: ' + this.initialTime).setOrigin(0.5);
+
+        if(this.initialTime <= 0){
+            this.countDownText.setText('');
+            this.physics.resume();
+
+            this.timeEvent.remove();
+        }
     }
 
     // Set Image origin to the scene
