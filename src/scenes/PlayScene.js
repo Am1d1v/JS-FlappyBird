@@ -19,8 +19,7 @@ class PlayScene extends BaseScene{
         this.score = 0;
         this.scoreText = '';
 
-        // Current Game difficulty
-        this.currentDifficulty = 'hard';
+        
         // Range of difficulties
         this.diffulties = {
             easy: {
@@ -40,6 +39,8 @@ class PlayScene extends BaseScene{
 
     // Scene Create
     create(){
+        // Current Game difficulty
+        this.currentDifficulty = 'easy';
         super.create()
         this.createBird();
         this.createPipes();
@@ -248,12 +249,24 @@ class PlayScene extends BaseScene{
 
             // Increase player's score
             this.increaseScore();
+
+            // Set difficulty when specific score achieved
+            this.increaseDifficulty();
           }
         }
     
         });
     
     };
+
+    // Set difficulty when specific score achieved
+    increaseDifficulty(){
+        if(this.score === 3 ){
+            this.currentDifficulty = 'medium';
+        } else if (this.score === 5){
+            this.currentDifficulty = 'hard';
+        }
+    }
 
     getMostRightPipe(){
         let mostRightX = 0;
