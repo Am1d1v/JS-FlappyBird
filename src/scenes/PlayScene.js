@@ -13,15 +13,15 @@ class PlayScene extends BaseScene{
         this.bird = null;
         this.pipes = null;
         this.isPaused = false;
-        this.pipeVerticalDistanceRange = [150, 250];
-        this.pipeHorizontalDistanceRange = [200, 450];
         this.pipeHorizontalDistance = 0;
         this.flapVelocity = 300;
 
         this.score = 0;
         this.scoreText = '';
 
-        this.currentDifficulty = 'easy';
+        // Current Game difficulty
+        this.currentDifficulty = 'hard';
+        // Range of difficulties
         this.diffulties = {
             easy: {
                 pipeHorizontalDistanceRange: [300, 350],
@@ -222,10 +222,11 @@ class PlayScene extends BaseScene{
 
     // Pipes placing
     placePipe(uPipe, lPipe){
+        const difficulty = this.diffulties[this.currentDifficulty]
         const mostRightX = this.getMostRightPipe();
-        let pipeVerticalDistance = Phaser.Math.Between(...this.pipeVerticalDistanceRange);
+        let pipeVerticalDistance = Phaser.Math.Between(...difficulty.pipeVerticalDistanceRange);
         let pipeVerticalPosition = Phaser.Math.Between(0 + 20, this.config.height - 20 - pipeVerticalDistance);
-        const pipeHorizontalDistance = Phaser.Math.Between(...this.pipeHorizontalDistanceRange); 
+        const pipeHorizontalDistance = Phaser.Math.Between(...difficulty.pipeHorizontalDistanceRange); 
 
         uPipe.x = mostRightX + pipeHorizontalDistance;
         uPipe.y = pipeVerticalPosition;
