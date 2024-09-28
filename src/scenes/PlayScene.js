@@ -50,7 +50,7 @@ class PlayScene extends BaseScene{
         this.handleInputs();
         this.listerToEvents();
 
-        // Create bird animation
+        // Create fly bird animation
         this.anims.create({
             key: 'fly',
             frames: this.anims.generateFrameNumbers('bird', {
@@ -59,7 +59,18 @@ class PlayScene extends BaseScene{
             }),
             frameRate: 8,
             repeat: -1
-        })
+        });
+
+        // Create gameover bird animation
+        this.anims.create({
+            key: 'gameover',
+            frames: this.anims.generateFrameNumbers('bird', {
+                start: 16,
+                end: 19
+            }),
+            frameRate: 3,
+            repeat: -1
+        });
 
         // Bind fly animation to bird
         this.bird.play('fly');
@@ -236,6 +247,9 @@ class PlayScene extends BaseScene{
             },
             loop: false
         });
+
+        // Play gameover bird animation
+        this.bird.play('gameover');
     };
 
     // Pipes placing
