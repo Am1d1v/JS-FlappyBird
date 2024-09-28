@@ -125,6 +125,9 @@ class PlayScene extends BaseScene{
             .setOrigin(0)
             .setScale(1.5);
 
+        // Set body size of the bird
+        this.bird.setBodySize(this.bird.width, this.bird.height- 6); 
+
         // Bird's gravity
         this.bird.body.gravity.y = 600;
 
