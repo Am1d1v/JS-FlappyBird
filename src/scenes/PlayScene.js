@@ -261,9 +261,9 @@ class PlayScene extends BaseScene{
 
     // Set difficulty when specific score achieved
     increaseDifficulty(){
-        if(this.score === 3 ){
+        if(this.score === 30 ){
             this.currentDifficulty = 'medium';
-        } else if (this.score === 5){
+        } else if (this.score === 60){
             this.currentDifficulty = 'hard';
         }
     }

@@ -11,7 +11,7 @@ class PreloadScene extends Phaser.Scene{
         this.load.image('sky', 'assets/sky.png');
 
         // Load Bird image
-        this.load.image('bird', 'assets/bird.png');
+        //this.load.image('bird', 'assets/bird.png');
 
         // Load Pipe image
         this.load.image('pipe', 'assets/pipe.png');
@@ -21,6 +21,9 @@ class PreloadScene extends Phaser.Scene{
 
         // Load Back Button Image
         this.load.image('back', 'assets/back.png');
+
+        // Load Bird Sprites
+        this.load.image('bird', 'assets/birdSprite.png');
     };
 
     // Scene Create
