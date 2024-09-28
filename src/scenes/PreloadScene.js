@@ -23,7 +23,10 @@ class PreloadScene extends Phaser.Scene{
         this.load.image('back', 'assets/back.png');
 
         // Load Bird Sprites
-        this.load.image('bird', 'assets/birdSprite.png');
+        this.load.spritesheet('bird', 'assets/birdSprite.png', {
+            frameWidth: 16,
+            frameHeight: 16
+        });
     };
 
     // Scene Create
